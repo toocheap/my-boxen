@@ -10,7 +10,7 @@ class people::toocheap {
       user   => $::boxen_user,
       domain => 'com.apple.finder',
       key    => 'AppleShowAllFiles',
-      value  => true,
+      value  => false,
       notify => Exec['killall Finder'];
     }
   }
@@ -41,6 +41,7 @@ class people::toocheap {
 
 #  include turn-off-dashboard
 
+  include java
   include homebrew
   include libtool
   include pkgconfig
@@ -60,10 +61,10 @@ class people::toocheap {
   include hazel
 #  include packer
 #  include textwrangler
-#  include droplr
-#  include skydrive
-#  include googledrive
-#  include postgresql
+  include droplr
+  include skydrive
+  include googledrive
+  include postgresql
 #  include heroku
 
   # Install via homebrew
@@ -82,6 +83,7 @@ class people::toocheap {
       "fontforge",
       "freetype",
       "gdbm",
+      "jenkins",
       "jpeg",
       "jq",
       "libassuan",
@@ -115,6 +117,9 @@ class people::toocheap {
     'GoogleJapaneseInput':
     source => "http://dl.google.com/japanese-ime/latest/GoogleJapaneseInput.dmg",
     provider => pkgdmg;
+#    'macvim-kaoriya-20131024':
+#    source => "https://code.google.com/p/macvim-kaoriya/downloads/detail?name=macvim-kaoriya-20131024.dmg",
+#    provider => pkgdmg;
   }
 
   $home = "/Users/${::luser}"
