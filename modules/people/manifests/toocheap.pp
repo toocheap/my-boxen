@@ -60,12 +60,14 @@ class people::toocheap {
   include vagrant
   include hazel
 #  include packer
-#  include textwrangler
+  include textwrangler
+  include caffeine
   include droplr
   include skydrive
   include googledrive
   include postgresql
-#  include heroku
+  include heroku
+  include skype
 
   # Install via homebrew
   package {

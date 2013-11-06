@@ -14,9 +14,14 @@ GITHUBTARBALL
     boxen (3.0.2)
 
 GITHUBTARBALL
+  remote: boxen/puppet-caffeine
+  specs:
+    caffeine (1.0.0)
+
+GITHUBTARBALL
   remote: boxen/puppet-chrome
   specs:
-    chrome (1.1.1)
+    chrome (1.1.2)
 
 GITHUBTARBALL
   remote: boxen/puppet-dnsmasq
@@ -52,6 +57,11 @@ GITHUBTARBALL
   remote: boxen/puppet-googledrive
   specs:
     googledrive (1.0.2)
+
+GITHUBTARBALL
+  remote: boxen/puppet-heroku
+  specs:
+    heroku (2.0.0)
 
 GITHUBTARBALL
   remote: boxen/puppet-homebrew
@@ -111,7 +121,7 @@ GITHUBTARBALL
 GITHUBTARBALL
   remote: boxen/puppet-osx
   specs:
-    osx (1.6.0)
+    osx (2.0.0)
 
 GITHUBTARBALL
   remote: boxen/puppet-pcre
@@ -139,9 +149,19 @@ GITHUBTARBALL
     ruby (6.3.4)
 
 GITHUBTARBALL
+  remote: boxen/puppet-skitch
+  specs:
+    skitch (1.0.2)
+
+GITHUBTARBALL
   remote: boxen/puppet-skydrive
   specs:
     skydrive (1.0.1)
+
+GITHUBTARBALL
+  remote: boxen/puppet-skype
+  specs:
+    skype (1.0.6)
 
 GITHUBTARBALL
   remote: boxen/puppet-sublime_text_2
@@ -159,6 +179,11 @@ GITHUBTARBALL
     sysctl (1.0.0)
 
 GITHUBTARBALL
+  remote: boxen/puppet-textwrangler
+  specs:
+    textwrangler (1.0.2)
+
+GITHUBTARBALL
   remote: boxen/puppet-tmux
   specs:
     tmux (1.0.0)
@@ -171,7 +196,7 @@ GITHUBTARBALL
 GITHUBTARBALL
   remote: boxen/puppet-virtualbox
   specs:
-    virtualbox (1.0.7)
+    virtualbox (1.0.9)
 
 GITHUBTARBALL
   remote: boxen/puppet-vlc
@@ -207,7 +232,8 @@ DEPENDENCIES
   alfred (= 1.1.6)
   autoconf (= 1.0.0)
   boxen (= 3.0.2)
-  chrome (= 1.1.1)
+  caffeine (= 1.0.0)
+  chrome (= 1.1.2)
   dnsmasq (= 1.0.0)
   dropbox (= 1.1.2)
   droplr (= 1.0.1)
@@ -216,6 +242,7 @@ DEPENDENCIES
   git (= 1.2.5)
   googledrive (= 1.0.2)
   hazel (= 0.0.3)
+  heroku (= 2.0.0)
   homebrew (= 1.4.1)
   hub (= 1.0.3)
   imagemagick (= 1.2.1)
@@ -228,20 +255,23 @@ DEPENDENCIES
   nodejs (= 3.2.9)
   onepassword (= 1.0.2)
   openssl (= 1.0.0)
-  osx (= 1.6.0)
+  osx (= 2.0.0)
   pcre (= 1.0.0)
   pkgconfig (= 1.0.0)
   postgresql (= 2.0.1)
   repository (= 2.2.0)
   ruby (= 6.3.4)
+  skitch (= 1.0.2)
   skydrive (= 1.0.1)
+  skype (= 1.0.6)
   stdlib (= 4.1.0)
   sublime_text_2 (= 1.1.2)
   sudo (= 1.0.0)
   sysctl (= 1.0.0)
+  textwrangler (= 1.0.2)
   tmux (= 1.0.0)
   vagrant (= 3.0.0)
-  virtualbox (= 1.0.7)
+  virtualbox (= 1.0.9)
   vlc (= 1.0.5)
   wget (= 1.0.0)
   xquartz (= 1.1.0)
