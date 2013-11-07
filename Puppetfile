@@ -41,7 +41,7 @@ github "postgresql",     "2.0.1" # via homebrew
 # Optional/custom modules. There are tons available at
 # https://github.com/boxen.
 github "osx",            "2.0.0"
-github "java",            "1.1.2"
+github "java",            "1.1.0"
 github "libtool",        "1.0.0" # use for php
 github "pkgconfig",      "1.0.0" # use for php
 github "pcre",           "1.0.0" # use for php
