@@ -209,11 +209,11 @@ class people::toocheap {
     remote_file { "$RictyBold":
         remote_location => $srcRictyBold
     }
-    $RictyPowerline = "$fontpath/Ricty Regular for Powerline.ttf"
-    $srcRictyPowerline = "https://www.dropbox.com/s/9kfxquv6m4nwd9e/Ricty%20Regular%20for%20Powerline.ttf"
-    remote_file {"$RictyPowerline":
-        remote_location => $srcRictyPowerline
-    }
+    # $RictyPowerline = "$fontpath/Ricty Regular for Powerline.ttf"
+    # $srcRictyPowerline = "https://www.dropbox.com/s/9kfxquv6m4nwd9e/Ricty%20Regular%20for%20Powerline.ttf"
+    # remote_file {"$RictyPowerline":
+    #     remote_location => $srcRictyPowerline
+    # }
     exec { 'font-cache update':
         command => "fc-cache -vf $fontpath",
         timeout => 0,
@@ -221,9 +221,15 @@ class people::toocheap {
             "test ! -f $Inconsolata",
             "test ! -f $RictyRegular",
             "test ! -f $RictyBold",
-            "test ! -f $RictyPowerline",
+#            "test ! -f $RictyPowerline",
         ],
-        require => [ Package['fontconfig'], File[$Inconsolata], File[$RictyRegular], File[$RictyBold], File[$RictyPowerline] ]
+        require => [
+            Package['fontconfig'],
+            File[$Inconsolata],
+            File[$RictyRegular],
+            File[$RictyBold],
+#            File[$RictyPowerline],
+        ]
     }
 
     # dotfiles
