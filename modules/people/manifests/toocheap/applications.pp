@@ -72,6 +72,7 @@ class people::toocheap::applications (
             "readline",
             "rbenv-gemset",
             "sqlite",
+            "tig",
             "tree",
             "w3m",
             'coreutils',        # for dircolors
