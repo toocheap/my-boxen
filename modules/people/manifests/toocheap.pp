@@ -120,9 +120,9 @@ class people::toocheap {
         'GoogleJapaneseInput':
             source => "http://dl.google.com/japanese-ime/latest/GoogleJapaneseInput.dmg",
             provider => pkgdmg;
-        #    'macvim-kaoriya-20131024':
+        # 'macvim-kaoriya-20131024':
         #    source => "https://code.google.com/p/macvim-kaoriya/downloads/detail?name=macvim-kaoriya-20131024.dmg",
-        #    provider => pkgdmg;
+        #    provider => compressed_app;
     }
 
     $home = "/Users/${::luser}"
@@ -172,58 +172,59 @@ class people::toocheap {
         require => Repository[$vim_vimproc],
     }
 
-    $vimPluginInstall = 'yes | vim -N -u NONE -i NONE -V1 -e -s --cmd "source ~/.vimrc" --cmd NeoBundleInstall! --cmd qall!'
-    exec { $vimPluginInstall:
-        cwd     => $dust_vim,
-        onlyif  => "test ! -d ~/.vim/bundle/unite.vim",
-        require => [ Repository[$vim_neobundle], File["$home/.vimrc"] ]
+    # $vimPluginInstall = 'yes | vim -N -u NONE -i NONE -V1 -e -s --cmd "source ~/.vimrc" --cmd NeoBundleInstall! --cmd qall!'
+    # exec { $vimPluginInstall:
+    #     cwd     => $dust_vim,
+    #     onlyif  => "test ! -d ~/.vim/bundle/unite.vim",
+    #     require => [ Repository[$vim_neobundle], File["$home/.vimrc"] ]
+    # }
+
+    # Font Install
+    define remote_file ($remote_location, $mode='0644') {
+        exec{"retrieve_$title":
+            command => "wget -q $remote_location -O $title",
+            creates => "$title",
+        }
+
+        file{"$title":
+            mode    => $mode,
+            require => Exec["retrieve_$title"],
+        }
     }
 
-#    $fontpatcher      = "${vim_neobundle}/vim-powerline/fontpatcher/fontpatcher"
-#    $inconsolata      = "${vim_neobundle}/vim-powerline/fontpatcher/Inconsolata.otf"
-#    $RictyRegular     = "${vim_neobundle}/vim-powerline/fontpatcher/Ricty-Regular.ttf"
-#    $RictyBold        = "${vim_neobundle}/vim-powerline/fontpatcher/Ricty-Bold.ttf"
-#    $RictyPowerline   = "${vim_neobundle}/vim-powerline/fontpatcher/Ricty%20Regular%20for%20Powerline.ttf"
-#    $wgetInconsolata  = "wget https://www.dropbox.com/s/epbo5t3opv54d7q/Inconsolata.otf"
-#    $wgetRictyRegular = "wget https://www.dropbox.com/s/r94cpx3wtit2na1/Ricty-Regular.ttf"
-#    $wgetRictyBold    = "wget https://www.dropbox.com/s/e8tsll05noadrcn/Ricty-Bold.ttf"
-#    $wgetRictyPowerline = "wget https://www.dropbox.com/s/9kfxquv6m4nwd9e/Ricty%20Regular%20for%20Powerline.ttf"
-#    exec { $wgetInconsolata:
-#        cwd         => $fontpatcher,
-#        creates     => "$inconsolata",
-#        require => Package['wget']
-#    }
-#    exec { $wgetRictyRegular:
-#        cwd         => $fontpatcher,
-#        creates     => "$RictyRegular",
-#        require => Package['wget']
-#    }
-#    exec { $wgetRictyBold:
-#        cwd         => $fontpatcher,
-#        creates     => "$RictyBold",
-#        require => Package['wget']
-#    }
-#    exec { $wgetRictyPowerline:
-#        cwd     => $fontpatcher,
-#        creates => "$RictyPowerline",
-#        require => Package['wget']
-#    }
-#    exec { "fontforge -script ${fontpatcher} ${inconsolata}":
-#        cwd     => $fontpatcher,
-#        require => [ Exec[$vimPluginInstall], Exec[$wgetInconsolata], Package['fontforge'] ],
-#    }
-#    exec { "fontforge -script ${fontpatcher} ${RictyRegular}":
-#        cwd     => $fontpatcher,
-#        require => [ Exec[$vimPluginInstall], Exec[$wgetRictyRegular], Package['fontforge'] ],
-#    }
-#    exec { "fontforge -script ${fontpatcher} ${RictyBold}":
-#        cwd     => $fontpatcher,
-#        require => [ Exec[$vimPluginInstall], Exec[$wgetRictyBold], Package['fontforge'] ],
-#    }
-#    exec { "fontforge -script ${fontpatcher} ${RictyPowerline}":
-#        cwd     => $fontpatcher,
-#        require => [ Exec[$vimPluginInstall],Exec[$wgetRictyPowerline], Package['fontforge'] ],
-#    }
+    $fontpath = "${home}/Library/Fonts"
+
+    $Inconsolata = "$fontpath/Inconsolata.otf"
+    $srcInconsolata  = "https://www.dropbox.com/s/epbo5t3opv54d7q/Inconsolata.otf"
+    remote_file { "$Inconsolata":
+        remote_location => $srcInconsolata
+    }
+    $RictyRegular = "$fontpath/Ricty-Regular.ttf"
+    $srcRictyRegular = "https://www.dropbox.com/s/r94cpx3wtit2na1/Ricty-Regular.ttf"
+    remote_file { "$RictyRegular":
+        remote_location => $srcRictyRegular
+    }
+    $RictyBold = "$fontpath/Ricty-Bold.ttf"
+    $srcRictyBold    = "https://www.dropbox.com/s/e8tsll05noadrcn/Ricty-Bold.ttf"
+    remote_file { "$RictyBold":
+        remote_location => $srcRictyBold
+    }
+    $RictyPowerline = "$fontpath/Ricty Regular for Powerline.ttf"
+    $srcRictyPowerline = "https://www.dropbox.com/s/9kfxquv6m4nwd9e/Ricty%20Regular%20for%20Powerline.ttf"
+    remote_file {"$RictyPowerline":
+        remote_location => $srcRictyPowerline
+    }
+    exec { 'font-cache update':
+        command => "fc-cache -vf $fontpath",
+        timeout => 0,
+        onlyif  => [
+            "test ! -f $Inconsolata",
+            "test ! -f $RictyRegular",
+            "test ! -f $RictyBold",
+            "test ! -f $RictyPowerline",
+        ],
+        require => [ Package['fontconfig'], File[$Inconsolata], File[$RictyRegular], File[$RictyBold], File[$RictyPowerline] ]
+    }
 
     # dotfiles
     file { $dotfiles:
