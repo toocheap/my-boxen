@@ -15,6 +15,7 @@ end
 
 github "boxen",      "3.0.2"
 github "sysctl",     "1.0.0"
+github "property_list_key", "0.1.0", :repo => "glarizza/puppet-property_list_key"
 
 # Core modules for a basic development environment. You can replace
 # some/most of these if you want, but it's not recommended.
