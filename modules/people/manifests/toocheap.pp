@@ -182,7 +182,7 @@ class people::toocheap {
     # Font Install
     define remote_file ($remote_location, $mode='0644') {
         exec{"retrieve_$title":
-            command => "wget -q $remote_location -O $title",
+            command => "curl -s $remote_location -o $title",
             creates => "$title",
         }
 
