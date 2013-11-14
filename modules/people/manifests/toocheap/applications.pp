@@ -23,7 +23,7 @@ class people::toocheap::applications (
     include vlc
     include onepassword
     include vagrant
-    include hazel
+    #    include hazel
     #  include packer
     include textwrangler
     include caffeine
