@@ -229,6 +229,7 @@ class people::toocheap::config (
     file { "$home/.profile":
         ensure  => link,
         mode    => '0644',
+        target  => "$dotfiles/dot.profile",
         require => Repository["$dotfiles"],
     }
     file { "$home/.gdbinit":

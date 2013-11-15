@@ -17,15 +17,18 @@ class people::toocheap::repos (
     $iterm2_solarized = "$SolarizedRepo/iterm2-colors-solarized"
     file { $iterm2_solarized:
         ensure => directory,
+        require => Repository["$SolarizedRepo"],
     }
     $iterm2_solarized_dark = "$iterm2_solarized/Solarized Dark.itermcolors"
     file { "$iterm2_solarized_dark":
         ensure => present,
         source => $iterm2_solarized_dark,
+        require => Repository["$SolarizedRepo"],
     }
     $iterm2_solarized_light = "$iterm2_solarized/Solarized Light.itermcolors"
     file { "$iterm2_solarized_light":
         ensure => present,
         source => $iterm2_solarized_light,
+        require => Repository["$SolarizedRepo"],
     }
 }

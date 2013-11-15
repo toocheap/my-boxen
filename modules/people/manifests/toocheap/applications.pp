@@ -90,5 +90,8 @@ class people::toocheap::applications (
         #    source => "https://code.google.com/p/macvim-kaoriya/downloads/detail?name=macvim-kaoriya-20131024.dmg",
         #    provider => compressed_app;
     }
+
+    vagrant::plugin { 'vagrant-global-status': }
+
 }
 
