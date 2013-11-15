@@ -29,7 +29,7 @@ end
 # Includes many of our custom types and providers, as well as global
 # config. Required.
 
-github "boxen",      "3.0.2"
+github "boxen",      "3.3.4"
 github "sysctl",     "1.0.0"
 github "property_list_key", "0.1.0", :repo => "glarizza/puppet-property_list_key"
 
